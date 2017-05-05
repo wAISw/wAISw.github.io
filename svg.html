@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background: #84becc;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        circle {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);;
+        }
+    </style>
+</head>
+<body>
+
+
+<svg id="svg"></svg>
+
+<script>
+  function makeAsin(W, H, color, rFlag, animateFlag) {
+    var html = '';
+    var height = H / 2;
+    var start = -1 * (W - height);
+    for (var step = start; step < W + 300; step += 30) {
+      var r = 1;
+      var y = 0;
+      var i = 0.03;
+      for (var x = -0.8; x <= 0.8; x += i) {
+        if (rFlag)
+          r += i * 5;
+        // r += H < W ? H / W : W / H;
+        y = Math.asin(x);
+        var id = 'circle-' + step + x;
+        var animateZoom = 1.1;
+        html += '<circle id="' + id + '" cx="' + (step + x * height) + '" cy="' + (height + y * height) + '" r="' + r + '" fill="' + color + '" />';
+
+        if (animateFlag)
+          html +=
+            '<animate ' +
+            'xlink:href="#' + id + '" ' +
+            'attributeName="r" ' +
+            'values="0;' + r + '; 0;" ' +
+            'dur="5s" ' +
+            'repeatCount="indefinite" /> ';
+      }
+    }
+    return html;
+  }
+
+  var svg = document.getElementById('svg');
+
+  // svg.innerHTML = makeAsin(window.innerWidth, window.innerHeight, '#db4e23', true, true);
+  svg.innerHTML = makeAsin(window.innerWidth, window.innerHeight, '#fff', false, false);
+</script>
+</body>
+</html>

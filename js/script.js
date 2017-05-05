@@ -21,7 +21,7 @@ $(function () {
 
   projectList.map(function (el) {
 
-    var li = $('<li>' + '<img src="' + el.img + '" />' + '<a href="' + el.url + '">' + el.name + '</a>' + '</li>');
+    var li = $('<li>' + '<a href="' + el.url + '">' + '<img src="' + el.img + '" /><span>' + el.name + '</span></a>' + '</li>');
 
     li.appendTo(ul);
 
