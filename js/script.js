@@ -2,17 +2,18 @@
 
 $(function () {
 
-
   var projectList = [
     {
       img: "./img/ticketsList.png",
       url: "./ticketsList/index.html",
-      name: "ticketsList"
+      name: "ticketsList",
+      description: "A simple list with a filter. Mobile friendly. Stack: React + Redux, axios."
     },
     {
       img: "./img/resume.png",
       url: "https://resume-ca6de.firebaseapp.com/",
-      name: "resume example"
+      name: "resume example",
+      description: "Example of a portfolio site with React + Redux + React-animations."
     }
 
   ];
@@ -21,7 +22,7 @@ $(function () {
 
   projectList.map(function (el) {
 
-    var li = $('<li>' + '<a href="' + el.url + '">' + '<img src="' + el.img + '" /><span>' + el.name + '</span></a>' + '</li>');
+    var li = $('<li>' + '<a href="' + el.url + '">' + '<img src="' + el.img + '" /><span>' + el.name + '</span></a><div class="description">' + el.description + '</div>' + '</li>');
 
     li.appendTo(ul);
 
